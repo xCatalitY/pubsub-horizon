@@ -119,7 +119,7 @@ To publish an event, an eligible publisher has to send a HTTP Post request to St
 Galaxy will de-multiplex the event message for each subscriber and applies existing filters. [Comet](https://github.com/telekom/pubsub-horizon-galaxy-comet) then takes over and sends the processed event message to the corresponding subscriber over HTTP. 
 
 To fetch an event via the Server-Sent-Events standard (SSE), an eligible subscriber has to send a request to Pulsar's SSE endpoint. 
-Pulsar will validate the request, identify & retriebe all undelivered event messages from Kafka and return it to the subscriber.
+Pulsar will validate the request, identify & retrieve all undelivered event messages from Kafka and return it to the subscriber.
 If one or more new events are available within one minute, Pulsar will forward these event messages to the subscriber until there are no more event messages for one minute.
 
 In order to query the status for an event or redeliver it, an eligible subscriber has to send a HTTP request to Voyager's endpoint. When requesting the redelivery of an event, Voyager picks the event message from the Kafka, resets its status in Horizon meta data store (MongoDB) and republishes it, so that either Comet or Pulsar will redeliver the event to the consumer depending on the chosen delivery type (callback or SSE).
